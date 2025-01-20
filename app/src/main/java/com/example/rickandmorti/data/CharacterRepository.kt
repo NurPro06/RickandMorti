@@ -9,6 +9,7 @@ class CharacterRepository @Inject constructor(
     fun getPagingSource(): CharacterPagingSource {
         return CharacterPagingSource(apiService)
     }
+
     suspend fun getCharacterById(id: Int): Character {
         return apiService.getCharacterById(id)
     }

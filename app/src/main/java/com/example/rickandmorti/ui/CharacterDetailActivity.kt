@@ -1,21 +1,52 @@
 package com.example.rickandmorti.ui
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.rickandmorti.ui.ui.theme.RickandMortiTheme
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.example.rickandmorti.databinding.ActivityCharacterDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class CharacterDetailActivity : ComponentActivity() {
+@AndroidEntryPoint
+class CharacterDetailActivity : AppCompatActivity() {
+    private val binding by lazy { ActivityCharacterDetailsBinding.inflate(layoutInflater) }
+    private val viewModel: CharacterDetailsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        setContentView(binding.root)
+
+        val characterId = intent.getIntExtra("character_id", -1)
+        if (characterId == -1){
+            Log.e("oololo", "Invalid character ID")
+            finish()
+            return
+
+        }
+
+        viewModel.loadCharacter(characterId)
+        viewModel.character.observe(this) { character ->
+            if (character != null) {
+                binding.apply {
+                    tvName.text = character.name
+                    specialAlive.text = "${character.status} - ${character.species}"
+                    tvType.text = if (character.type?.isNotEmpty() == true){
+                        "Type - ${character.type}"
+                    } else{
+                        "Type - ??"
+                    }
+                    tvGender.text = "Gender - ${character.gender}"
+                    tvLocation.text = "Location - ${character.location?.name}"
+
+                    Glide.with(ivImg.context)
+                        .load(character.image)
+                        .into(ivImg)
+                }
+            }else {
+                Log.e("oololo", "Character is null")
+                finish()
+            }
+        }
     }
 }

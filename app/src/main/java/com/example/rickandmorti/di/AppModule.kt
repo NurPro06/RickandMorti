@@ -1,7 +1,6 @@
 package com.example.rickandmorti.di
 
 import com.example.rickandmorti.data.ApiService
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +17,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit{
         return Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api")
+            .baseUrl("https://rickandmortyapi.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
