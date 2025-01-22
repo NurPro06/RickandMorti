@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#272b33"
-    tools:context=".ui.MainActivity">
+    tools:context=".MainActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_characters"
         android:padding="180dp"
@@ -14,7 +14,5 @@
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
