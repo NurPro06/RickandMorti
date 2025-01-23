@@ -5,19 +5,20 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickandmorti.databinding.ActivityMain2Binding
 import com.example.rickandmorti.ui.CharacterAdapter
 import com.example.rickandmorti.ui.CharacterDetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMain2Binding
     private val viewModel: MainViewModel by viewModels()
     private val adapter = CharacterAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.rvCharacters.layoutManager = LinearLayoutManager(this)
