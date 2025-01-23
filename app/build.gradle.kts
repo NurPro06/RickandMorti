@@ -80,8 +80,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
-    debugImplementation(libs.androidx.ui.test.manifest)
-    kapt("com.google.dagger:hilt-android-compiler:2.52")
+    implementation("com.google.dagger:hilt-android:2.55")
+    kapt("com.google.dagger:hilt-android-compiler:2.55")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.paging:paging-runtime:3.3.5")
 

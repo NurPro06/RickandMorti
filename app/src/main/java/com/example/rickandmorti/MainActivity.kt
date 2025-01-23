@@ -1,37 +1,37 @@
 package com.example.rickandmorti
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickandmorti.databinding.ActivityMain2Binding
+import com.example.rickandmorti.ui.CharacterAdapter
+import com.example.rickandmorti.ui.CharacterDetailsActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    private val binding by lazy { ActivityMain2Binding.inflate(layoutInflater) }
-    private val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java] }
-    private val adapter by lazy { CartoonAdapter() }
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
+    private val adapter = CharacterAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupRecyclerView()
-
-        viewModel.getCharacters()
-
-        viewModel.charactersData.observe(this) { characters ->
-            adapter.submitList(characters)
-        }
-
-        viewModel.errorData.observe(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun setupRecyclerView() {
         binding.rvCharacters.layoutManager = LinearLayoutManager(this)
         binding.rvCharacters.adapter = adapter
+
+        viewModel.getCharacters().observe(this) { data ->
+            adapter.submitData(lifecycle, data)
+        }
+
+        adapter.setOnItemClickListener { character ->
+            val intent = Intent(this, CharacterDetailsActivity::class.java).apply {
+                putExtra("characterId", character.id)
+            }
+            startActivity(intent)
+        }
     }
 }

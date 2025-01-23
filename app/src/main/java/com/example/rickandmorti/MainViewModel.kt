@@ -3,35 +3,29 @@ package com.example.rickandmorti
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.rickandmorti.data.RetrofitInstance
-import com.example.rickandmorti.data.models.BaseResponse
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import com.example.rickandmorti.data.CharacterRepository
+
 import com.example.rickandmorti.data.models.Character
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 
-class MainViewModel : ViewModel() {
-    private val api = RetrofitInstance.api
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: CharacterRepository
+) : ViewModel() {
 
-    private val _charactersData = MutableLiveData<List<Character>>()
-    val charactersData: LiveData<List<Character>> get() = _charactersData
-
-    private val _errorData = MutableLiveData<String>()
-    val errorData: LiveData<String> get() = _errorData
-
-    fun getCharacters() {
-        api.getCharacters().enqueue(object : Callback<BaseResponse> {
-            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                if (response.isSuccessful) {
-                    _charactersData.postValue(response.body()?.characters ?: emptyList())
-                } else {
-                    _errorData.postValue("Error: ${response.errorBody()?.string() ?: "Unknown error"}")
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                _errorData.postValue(t.message ?: "Unknown error")
-            }
-        })
+    fun getCharacters(): LiveData<PagingData<Character>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                prefetchDistance = 30,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { repository.getPagingSource() }
+        ).liveData
     }
 }

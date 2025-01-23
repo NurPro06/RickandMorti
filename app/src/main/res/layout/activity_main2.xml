@@ -7,12 +7,15 @@
     android:layout_height="match_parent"
     android:background="#272b33"
     tools:context=".MainActivity">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_characters"
-        android:padding="180dp"
-        tools:listitem="@layout/item_rick_and_morty"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:padding="18dp"
+        tools:listitem="@layout/item_rick_and_morty"
+        android:clipToPadding="false"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
