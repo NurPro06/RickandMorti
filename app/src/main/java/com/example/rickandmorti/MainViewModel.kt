@@ -1,6 +1,6 @@
 package com.example.rickandmorti
 
-import android.view.WindowInsetsAnimation
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +11,8 @@ import com.example.rickandmorti.data.models.BaseResponse
 import com.example.rickandmorti.data.models.Character
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
-import okhttp3.Call
-import okhttp3.Response
+import retrofit2.Call
+import retrofit2.Response
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(
     val errorData: LiveData<String> get() = _errorData
 
     fun getCharacters() {
-        api.getCharacters().enqueue(object : WindowInsetsAnimation.Callback<BaseResponse> {
+        api.getCharacters().enqueue(object :retrofit2.Callback<BaseResponse> {
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     response.body()?.let {
