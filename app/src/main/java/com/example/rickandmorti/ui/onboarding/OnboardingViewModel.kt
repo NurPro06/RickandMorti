@@ -1,20 +1,16 @@
 package com.example.rickandmorti.ui.onboarding
 
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
-import com.example.rickandmorti.R
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 
 @HiltViewModel
-class OnboardingViewModel @Inject constructor() : ViewModel() {
+class OnboardingViewModel @Inject constructor(
+    private val prefs: SharedPreferences
+) : ViewModel() {
 
-    val pages = listOf(
-        OnBoardingPage("Добро пожаловать", "Описание экрана 1", R.drawable.image1),
-        OnBoardingPage("Функция 1", "Описание экрана 2", R.drawable.image2),
-        OnBoardingPage("Функция 2", "Описание экрана 3", R.drawable.image3),
-        OnBoardingPage("Начнем", "Описание экрана 4", R.drawable.image4)
-    )
-
-    fun completeOnboarding() {
-    }
+    var isFirstLaunch: Boolean
+        get() = prefs.getBoolean("first_time_user", true)
+        set(value) = prefs.edit().putBoolean("first_time_user", value).apply()
 }
