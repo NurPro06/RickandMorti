@@ -6,11 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class OnboardingViewModel @Inject constructor(
-    private val prefs: SharedPreferences
-) : ViewModel() {
-
-    var isFirstLaunch: Boolean
-        get() = prefs.getBoolean("first_time_user", true)
-        set(value) = prefs.edit().putBoolean("first_time_user", value).apply()
+class OnBoardViewModel @Inject constructor(private val sharedPreferences: SharedPreferences): ViewModel() {
+    var isFirstTime: Boolean
+        get() = sharedPreferences.getBoolean("onboarding_first_time", true)
+        set(value) = sharedPreferences.edit().putBoolean("onboarding_first_time", value).apply()
 }
