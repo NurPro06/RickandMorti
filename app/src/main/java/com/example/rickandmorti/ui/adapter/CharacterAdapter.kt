@@ -6,14 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
-import com.example.m5lesson4_retrofitmvvm_rickandmortyapi.CharacterStatus
-import com.example.m5lesson4_retrofitmvvm_rickandmortyapi.data.models.Character
-import com.example.m5lesson4_retrofitmvvm_rickandmortyapi.databinding.CharacterItemBinding
-import com.example.m5lesson4_retrofitmvvm_rickandmortyapi.ui.interfaces.OnItemClick
-import com.example.m5lesson4_retrofitmvvm_rickandmortyapi.viewmodels.CharactersViewModel
+import com.example.rickandmorti.OnItemClick
+import com.example.rickandmorti.ui.onboarding.CharactersViewModel
 
 class CharactersAdapter(
-    private val viewModel: CharacterViewModel,
+    private val viewModel: CharactersViewModel,
     private val onClick: OnItemClick
 ) : ListAdapter<Character, CharactersAdapter.ViewHolder>(DiffCallback()) {
 
