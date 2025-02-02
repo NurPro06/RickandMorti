@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.m5lesson4_retrofitmvvm_rickandmortyapi.data.room.CharacterDatabase
 import com.example.rickandmorti.data.CartoonApiService
+import com.example.rickandmorti.room.CharacterDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,7 +32,7 @@ object AppModule {
     @Provides
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient {
+    ): OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(15, TimeUnit.SECONDS)
@@ -46,7 +47,7 @@ object AppModule {
     ): Retrofit{
         return Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
-            .client(okHttpClient)
+            .client(okHttpClient)// Передает OkHttpClient
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

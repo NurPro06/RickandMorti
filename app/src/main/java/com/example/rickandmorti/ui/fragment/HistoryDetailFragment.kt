@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.tooling.data.EmptyGroup.location
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import coil3.load
+import com.example.rickandmorti.ImageUtils
 import com.example.rickandmorti.databinding.FragmentHistoryDetailBinding
+import com.example.rickandmorti.ui.onboarding.CharactersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

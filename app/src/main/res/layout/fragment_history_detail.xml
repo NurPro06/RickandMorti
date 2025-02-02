@@ -1,59 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.fragment.HistoryDetailFragment">
 
     <LinearLayout
+        android:id="@+id/cardContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/gray">
+        android:background="@color/gray"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/characterImage"
+            android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:scaleType="centerCrop"
-            android:src="@color/black" />
+            android:layout_height="400dp"
+            android:scaleType="fitXY"
+            android:src="@color/black"/>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="14dp">
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alan Rails"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="32sp"
+                android:fontFamily="@font/potta_one" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status:"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/potta_one" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/potta_one"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/characterName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Character Name"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/characterStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status: Unknown"
+                    android:text="Species:"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
-                    android:textColor="@color/white" />
+                    android:fontFamily="@font/potta_one" />
 
                 <TextView
-                    android:id="@+id/characterSpecies"
+                    android:id="@+id/species"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Species: Unknown"
-                    android:textSize="18sp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/potta_one"
+                    android:layout_marginStart="8dp" />
             </LinearLayout>
-        </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender:"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/potta_one" />
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/potta_one"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Origin:"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/potta_one" />
+
+                <TextView
+                    android:id="@+id/origin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/potta_one"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last known location:"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/potta_one" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/potta_one"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="First seen in:"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/potta_one" />
+
+                <TextView
+                    android:id="@+id/firstSeen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/potta_one"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

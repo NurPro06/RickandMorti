@@ -5,7 +5,9 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.rickandmorti.databinding.ActivityMain2Binding
+import com.example.rickandmorti.ui.onboarding.OnBoardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -19,10 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.fragments, CharactersFragment())
-//            .commit()
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragments) as NavHostFragment
         val navController = navHostFragment.navController
 

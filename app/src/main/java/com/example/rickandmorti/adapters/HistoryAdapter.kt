@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import com.example.rickandmorti.ImageUtils
+import com.example.rickandmorti.OnItemClick
 import com.example.rickandmorti.room.CharacterEntity
+import com.example.rickandmorti.ui.onboarding.CharactersViewModel
 
 class HistoryAdapter(
     private val viewModel: CharactersViewModel,
